@@ -1,7 +1,8 @@
 %% Indicizzazione sequenza adattiva 
 
-x = zeros(0,10);
-for k = 1:10
+L = input('Enter a positive integer number.');
+x = zeros(0,L);
+for k = 1:L
     x(k) = randn(1);
 end
 x = x / max(x);
@@ -18,14 +19,13 @@ else
     n = (abs(x) - (mod(abs(x), delta))) / delta;
 end
 
-n_cresc = zeros(0, size(n));
+n_cresc = zeros(0,L);
+
 for i = 1:size(n)
-    for j = 1:size(n)
-        k = i;
-        while n(k) < n(j)
-            k = k + 1;
+    for j = (i + 1):size(n)
+        if n(i) > n(j) 
+            n_cresc(i) = n(j);
         end
-        n_cresc(i) = n(k);
     end
 end
 n_cresc
